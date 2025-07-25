@@ -26,6 +26,11 @@ class CLI {
       .command("add")
       .description("Add a new task")
       .action(() => this.addTaskCommand())
+
+    this.program
+      .command("list")
+      .description("List all tasks")
+      .action(() => this.listTasksCommand())
   }
 
   async start() {
@@ -80,7 +85,7 @@ class CLI {
         await this.addTaskFlow()
         break
       case "view":
-        console.log("View tasks coming soon...")
+        await this.viewAllTasks()
         break
       default:
         console.log("Feature not implemented yet.")
@@ -150,10 +155,63 @@ class CLI {
     }
   }
 
+  async viewAllTasks() {
+    console.log(chalk.yellow("\n📋 All Tasks"))
+    console.log(chalk.yellow("============="))
+
+    const tasks = this.taskManager.getAllTasks()
+    if (tasks.length === 0) {
+      console.log(chalk.gray("No tasks found."))
+      return
+    }
+
+    this.displayTasks(tasks)
+  }
+
+  displayTasks(tasks) {
+    if (tasks.length === 0) {
+      console.log(chalk.gray("No tasks to display."))
+      return
+    }
+
+    tasks.forEach((task, index) => {
+      const status = task.completed ? chalk.green("✓") : chalk.gray("○")
+      const priority = this.colorPriority(task.priority)
+      const overdue = task.isOverdue() ? chalk.red(" (OVERDUE)") : ""
+      const dueInfo = task.dueDate ? ` | Due: ${task.dueDate.toLocaleDateString()}${overdue}` : ""
+
+      console.log(
+        `${index + 1}. [${status}] ${chalk.bold(task.title)} | ${priority} | ${chalk.cyan(task.category)}${dueInfo}`,
+      )
+
+      if (task.description) {
+        console.log(chalk.gray(`   Description: ${task.description}`))
+      }
+    })
+  }
+
+  colorPriority(priority) {
+    switch (priority) {
+      case "High":
+        return chalk.red(priority)
+      case "Medium":
+        return chalk.yellow(priority)
+      case "Low":
+        return chalk.green(priority)
+      default:
+        return priority
+    }
+  }
+
   // Command-line specific methods
   async addTaskCommand() {
     await this.taskManager.initialize()
     await this.addTaskFlow()
+  }
+
+  async listTasksCommand() {
+    await this.taskManager.initialize()
+    await this.viewAllTasks()
   }
 }
 
