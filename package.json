@@ -1,5 +1,5 @@
 {
-  "name": "task-manager-oop",
+  "name": "task-manager",
   "version": "1.0.0",
   "description": "A command-line task management application using Object-Oriented Programming and File Management",
   "main": "index.js",

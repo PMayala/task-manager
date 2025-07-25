@@ -62,7 +62,7 @@ User Input → CLI → TaskManager → Validator → Task Classes
 ## File Structure
 
 ```
-task-manager-oop/
+task-manager/
 ├── index.js              # Application entry point
 ├── src/                  # Source code
 │   ├── Task.js          # Task classes
