@@ -21,6 +21,11 @@ class CLI {
       .command("start")
       .description("Start the interactive task manager")
       .action(() => this.startInteractive())
+
+    this.program
+      .command("add")
+      .description("Add a new task")
+      .action(() => this.addTaskCommand())
   }
 
   async start() {
@@ -72,7 +77,7 @@ class CLI {
   async handleAction(action) {
     switch (action) {
       case "add":
-        console.log("Add task coming soon...")
+        await this.addTaskFlow()
         break
       case "view":
         console.log("View tasks coming soon...")
@@ -80,6 +85,75 @@ class CLI {
       default:
         console.log("Feature not implemented yet.")
     }
+  }
+
+  async addTaskFlow() {
+    console.log(chalk.yellow("\n➕ Add New Task"))
+    console.log(chalk.yellow("================"))
+
+    const answers = await inquirer.prompt([
+      {
+        type: "input",
+        name: "title",
+        message: "Task title:",
+        validate: (input) => input.trim().length > 0 || "Title is required",
+      },
+      {
+        type: "input",
+        name: "description",
+        message: "Description (optional):",
+      },
+      {
+        type: "list",
+        name: "priority",
+        message: "Priority:",
+        choices: ["High", "Medium", "Low"],
+        default: "Medium",
+      },
+      {
+        type: "input",
+        name: "dueDate",
+        message: "Due date (YYYY-MM-DD, optional):",
+        validate: (input) => {
+          if (!input) return true
+          const date = new Date(input)
+          return !isNaN(date.getTime()) || "Invalid date format"
+        },
+      },
+      {
+        type: "input",
+        name: "category",
+        message: "Category:",
+        default: "General",
+      },
+      {
+        type: "list",
+        name: "taskType",
+        message: "Task type:",
+        choices: ["regular", "work", "personal"],
+        default: "regular",
+      },
+    ])
+
+    try {
+      const task = await this.taskManager.addTask(
+        answers.title,
+        answers.description,
+        answers.priority,
+        answers.dueDate || null,
+        answers.category,
+        answers.taskType,
+      )
+      console.log(chalk.green(`✅ Task "${task.title}" added successfully!`))
+    } catch (error) {
+      console.log(chalk.red(`❌ ${error.message}`))
+    }
+  }
+
+  // Command-line specific methods
+  async addTaskCommand() {
+    await this.taskManager.initialize()
+    await this.addTaskFlow()
   }
 }
 
