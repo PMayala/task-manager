@@ -3,13 +3,6 @@ class Validator {
   static validateTaskData(data) {
     const errors = []
 
-    if (!data.title || data.title.trim().length === 0) {
-      errors.push("Title is required")
-    }
-
-    if (data.priority && !["High", "Medium", "Low"].includes(data.priority)) {
-      errors.push("Priority must be High, Medium, or Low")
-    }
 
     if (data.dueDate) {
       const date = new Date(data.dueDate)
