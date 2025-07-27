@@ -8,6 +8,11 @@ A comprehensive command-line task management application built with Object-Orien
 - **Kevine Umutoni**
 - **Plamedi Mayala**
 
+## Video Walkthrough
+🎥 **Watch the complete application demo**: [Task Manager Walkthrough](https://youtu.be/yqpxNdv13aU)
+
+This video demonstrates all features and functionality of the Task Manager application.
+
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
@@ -61,7 +66,7 @@ npm --version
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd task-manager-oop
+   cd task-manager
    ```
 
 2. **Install dependencies**
@@ -105,6 +110,8 @@ npm run format
    ```
 
 2. You'll see the main menu with numbered options. Enter the number corresponding to your desired action.
+
+📺 **For a complete visual guide, watch our [video walkthrough](https://youtu.be/yqpxNdv13aU)** showing all features in action.
 
 ### Main Menu Options
 
@@ -151,7 +158,7 @@ Use the search function to find tasks by entering keywords that match:
 ## Project Structure
 
 ```
-task-manager-oop/
+task-manager/
 ├── index.js              # Main application entry point
 ├── src/                  # Source code directory
 │   ├── Task.js          # Task class and specialized classes
@@ -422,6 +429,7 @@ For questions, bug reports, or feature requests:
 - 📧 Contact the development team through your course platform
 - 🐛 Create an issue on the project repository
 - 📖 Check the documentation in the `docs/` directory
+- 🎥 Watch the [video walkthrough](https://youtu.be/yqpxNdv13aU) for visual guidance
 
 ## Acknowledgments
 

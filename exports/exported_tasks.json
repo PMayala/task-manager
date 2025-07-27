@@ -1,32 +1,32 @@
 [
   {
-    "id": "task_1753534773619_l4iefbya7",
-    "title": "Work Task 1",
-    "description": "Description",
-    "priority": "High",
+    "id": "task_1753531676145_udh4e5ldi",
+    "title": "Shower",
+    "description": "Night",
+    "priority": "Medium",
     "dueDate": "2024-12-31T00:00:00.000Z",
-    "category": "Work",
+    "category": "regular",
     "completed": false,
-    "createdAt": "2025-07-26T12:59:33.619Z"
+    "createdAt": "2025-07-26T12:07:56.145Z"
   },
   {
-    "id": "task_1753534773624_jcb803iiz",
+    "id": "task_1753531676149_jfsne3kjk",
     "title": "Work Task 2",
     "description": "Description",
     "priority": "Medium",
     "dueDate": "2025-01-15T00:00:00.000Z",
     "category": "Work",
-    "completed": false,
-    "createdAt": "2025-07-26T12:59:33.624Z"
+    "completed": true,
+    "createdAt": "2025-07-26T12:07:56.149Z"
   },
   {
-    "id": "task_1753534773628_k2u8pjhvd",
+    "id": "task_1753531676152_j2efavbin",
     "title": "Personal Task",
     "description": "Description",
     "priority": "Low",
     "dueDate": "2024-06-15T00:00:00.000Z",
     "category": "Personal",
     "completed": false,
-    "createdAt": "2025-07-26T12:59:33.628Z"
+    "createdAt": "2025-07-26T12:07:56.152Z"
   }
 ]
